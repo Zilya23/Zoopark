@@ -1,0 +1,1038 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище ZooModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Animal">
+          <Key>
+            <PropertyRef Name="ID_Animal" />
+          </Key>
+          <Property Name="ID_Animal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="DateOfBirdth" Type="date" />
+          <Property Name="ID_Gender" Type="int" />
+          <Property Name="ID_FeedingRation" Type="int" />
+          <Property Name="ID_Habitat" Type="int" />
+          <Property Name="ID_Caretaker" Type="int" />
+          <Property Name="ID_Veterinarian" Type="int" />
+          <Property Name="Foto" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Bird">
+          <Key>
+            <PropertyRef Name="ID_Bird" />
+          </Key>
+          <Property Name="ID_Bird" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="DateOfBirdth" Type="date" />
+          <Property Name="ID_Gender" Type="int" />
+          <Property Name="ID_WinteringPlace" Type="int" />
+          <Property Name="ID_FeedingRation" Type="int" />
+          <Property Name="ID_Habitat" Type="int" />
+          <Property Name="ID_Caretaker" Type="int" />
+          <Property Name="ID_Veterinarian" Type="int" />
+          <Property Name="Foto" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="ID_Employee" />
+          </Key>
+          <Property Name="ID_Employee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="Surname" Type="varchar(max)" />
+          <Property Name="Patronymic" Type="varchar(max)" />
+          <Property Name="DateOfBirdth" Type="date" />
+          <Property Name="PhoneNumber" Type="varchar(max)" />
+          <Property Name="MaritalStatus" Type="bit" />
+          <Property Name="ID_TypeEmployee" Type="int" />
+          <Property Name="Password" Type="int" />
+          <Property Name="Foto" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Feeding_Ration">
+          <Key>
+            <PropertyRef Name="ID_FeedingRation" />
+          </Key>
+          <Property Name="ID_FeedingRation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="ID_TypeFeedingRation" Type="int" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="ID_Gender" />
+          </Key>
+          <Property Name="ID_Gender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Habitat">
+          <Key>
+            <PropertyRef Name="ID_Habitat" />
+          </Key>
+          <Property Name="ID_Habitat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="Characteistic" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Reptile">
+          <Key>
+            <PropertyRef Name="ID_Reptile" />
+          </Key>
+          <Property Name="ID_Reptile" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="DateOfBirdth" Type="date" />
+          <Property Name="ID_Gender" Type="int" />
+          <Property Name="NormalTemperrature" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="HibernationPeriod" Type="int" />
+          <Property Name="ID_FeedingRation" Type="int" />
+          <Property Name="ID_Habitat" Type="int" />
+          <Property Name="ID_Caretaker" Type="int" />
+          <Property Name="ID_Veterinarian" Type="int" />
+          <Property Name="Foto" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Type_Employee">
+          <Key>
+            <PropertyRef Name="ID_TypeEmployee" />
+          </Key>
+          <Property Name="ID_TypeEmployee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Type_Feeding_Ration">
+          <Key>
+            <PropertyRef Name="ID_TyprFeedingRation" />
+          </Key>
+          <Property Name="ID_TyprFeedingRation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Wintering_Place">
+          <Key>
+            <PropertyRef Name="ID_WinteringPlace" />
+          </Key>
+          <Property Name="ID_WinteringPlace" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameCountry" Type="varchar(max)" />
+          <Property Name="FlightDate" Type="date" />
+          <Property Name="ArrinalDate" Type="date" />
+        </EntityType>
+        <Association Name="FK_Animal_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="ID_Caretaker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Employee1">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="ID_Veterinarian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Feeding_Ration">
+          <End Role="Feeding_Ration" Type="Self.Feeding_Ration" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feeding_Ration">
+              <PropertyRef Name="ID_FeedingRation" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="ID_FeedingRation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID_Gender" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="ID_Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Habitat">
+          <End Role="Habitat" Type="Self.Habitat" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Habitat">
+              <PropertyRef Name="ID_Habitat" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="ID_Habitat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bird_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Bird" Type="Self.Bird" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Bird">
+              <PropertyRef Name="ID_Caretaker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bird_Employee1">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Bird" Type="Self.Bird" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Bird">
+              <PropertyRef Name="ID_Veterinarian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bird_Feeding_Ration">
+          <End Role="Feeding_Ration" Type="Self.Feeding_Ration" Multiplicity="0..1" />
+          <End Role="Bird" Type="Self.Bird" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feeding_Ration">
+              <PropertyRef Name="ID_FeedingRation" />
+            </Principal>
+            <Dependent Role="Bird">
+              <PropertyRef Name="ID_FeedingRation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bird_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Bird" Type="Self.Bird" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID_Gender" />
+            </Principal>
+            <Dependent Role="Bird">
+              <PropertyRef Name="ID_Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bird_Habitat">
+          <End Role="Habitat" Type="Self.Habitat" Multiplicity="0..1" />
+          <End Role="Bird" Type="Self.Bird" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Habitat">
+              <PropertyRef Name="ID_Habitat" />
+            </Principal>
+            <Dependent Role="Bird">
+              <PropertyRef Name="ID_Habitat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bird_Wintering_Place">
+          <End Role="Wintering_Place" Type="Self.Wintering_Place" Multiplicity="0..1" />
+          <End Role="Bird" Type="Self.Bird" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wintering_Place">
+              <PropertyRef Name="ID_WinteringPlace" />
+            </Principal>
+            <Dependent Role="Bird">
+              <PropertyRef Name="ID_WinteringPlace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Type_Employee">
+          <End Role="Type_Employee" Type="Self.Type_Employee" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_Employee">
+              <PropertyRef Name="ID_TypeEmployee" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="ID_TypeEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feeding_Ration_Type_Feeding_Ration">
+          <End Role="Type_Feeding_Ration" Type="Self.Type_Feeding_Ration" Multiplicity="0..1" />
+          <End Role="Feeding_Ration" Type="Self.Feeding_Ration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_Feeding_Ration">
+              <PropertyRef Name="ID_TyprFeedingRation" />
+            </Principal>
+            <Dependent Role="Feeding_Ration">
+              <PropertyRef Name="ID_TypeFeedingRation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reptile_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Reptile" Type="Self.Reptile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Reptile">
+              <PropertyRef Name="ID_Caretaker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reptile_Employee1">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Reptile" Type="Self.Reptile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Reptile">
+              <PropertyRef Name="ID_Veterinarian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reptile_Feeding_Ration">
+          <End Role="Feeding_Ration" Type="Self.Feeding_Ration" Multiplicity="0..1" />
+          <End Role="Reptile" Type="Self.Reptile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feeding_Ration">
+              <PropertyRef Name="ID_FeedingRation" />
+            </Principal>
+            <Dependent Role="Reptile">
+              <PropertyRef Name="ID_FeedingRation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reptile_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Reptile" Type="Self.Reptile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID_Gender" />
+            </Principal>
+            <Dependent Role="Reptile">
+              <PropertyRef Name="ID_Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reptile_Habitat">
+          <End Role="Habitat" Type="Self.Habitat" Multiplicity="0..1" />
+          <End Role="Reptile" Type="Self.Reptile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Habitat">
+              <PropertyRef Name="ID_Habitat" />
+            </Principal>
+            <Dependent Role="Reptile">
+              <PropertyRef Name="ID_Habitat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ZooModelContainer">
+          <EntitySet Name="Animal" EntityType="Self.Animal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bird" EntityType="Self.Bird" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feeding_Ration" EntityType="Self.Feeding_Ration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Habitat" EntityType="Self.Habitat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reptile" EntityType="Self.Reptile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type_Employee" EntityType="Self.Type_Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type_Feeding_Ration" EntityType="Self.Type_Feeding_Ration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wintering_Place" EntityType="Self.Wintering_Place" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Animal_Employee" Association="Self.FK_Animal_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Employee1" Association="Self.FK_Animal_Employee1">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Feeding_Ration" Association="Self.FK_Animal_Feeding_Ration">
+            <End Role="Feeding_Ration" EntitySet="Feeding_Ration" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Gender" Association="Self.FK_Animal_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Habitat" Association="Self.FK_Animal_Habitat">
+            <End Role="Habitat" EntitySet="Habitat" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bird_Employee" Association="Self.FK_Bird_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Bird" EntitySet="Bird" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bird_Employee1" Association="Self.FK_Bird_Employee1">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Bird" EntitySet="Bird" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bird_Feeding_Ration" Association="Self.FK_Bird_Feeding_Ration">
+            <End Role="Feeding_Ration" EntitySet="Feeding_Ration" />
+            <End Role="Bird" EntitySet="Bird" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bird_Gender" Association="Self.FK_Bird_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Bird" EntitySet="Bird" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bird_Habitat" Association="Self.FK_Bird_Habitat">
+            <End Role="Habitat" EntitySet="Habitat" />
+            <End Role="Bird" EntitySet="Bird" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bird_Wintering_Place" Association="Self.FK_Bird_Wintering_Place">
+            <End Role="Wintering_Place" EntitySet="Wintering_Place" />
+            <End Role="Bird" EntitySet="Bird" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Type_Employee" Association="Self.FK_Employee_Type_Employee">
+            <End Role="Type_Employee" EntitySet="Type_Employee" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feeding_Ration_Type_Feeding_Ration" Association="Self.FK_Feeding_Ration_Type_Feeding_Ration">
+            <End Role="Type_Feeding_Ration" EntitySet="Type_Feeding_Ration" />
+            <End Role="Feeding_Ration" EntitySet="Feeding_Ration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reptile_Employee" Association="Self.FK_Reptile_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Reptile" EntitySet="Reptile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reptile_Employee1" Association="Self.FK_Reptile_Employee1">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Reptile" EntitySet="Reptile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reptile_Feeding_Ration" Association="Self.FK_Reptile_Feeding_Ration">
+            <End Role="Feeding_Ration" EntitySet="Feeding_Ration" />
+            <End Role="Reptile" EntitySet="Reptile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reptile_Gender" Association="Self.FK_Reptile_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Reptile" EntitySet="Reptile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reptile_Habitat" Association="Self.FK_Reptile_Habitat">
+            <End Role="Habitat" EntitySet="Habitat" />
+            <End Role="Reptile" EntitySet="Reptile" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ZooModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Animal">
+          <Key>
+            <PropertyRef Name="ID_Animal" />
+          </Key>
+          <Property Name="ID_Animal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirdth" Type="DateTime" Precision="0" />
+          <Property Name="ID_Gender" Type="Int32" />
+          <Property Name="ID_FeedingRation" Type="Int32" />
+          <Property Name="ID_Habitat" Type="Int32" />
+          <Property Name="ID_Caretaker" Type="Int32" />
+          <Property Name="ID_Veterinarian" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Animal_Employee" FromRole="Animal" ToRole="Employee" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK_Animal_Employee1" FromRole="Animal" ToRole="Employee" />
+          <NavigationProperty Name="Feeding_Ration" Relationship="Self.FK_Animal_Feeding_Ration" FromRole="Animal" ToRole="Feeding_Ration" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Animal_Gender" FromRole="Animal" ToRole="Gender" />
+          <NavigationProperty Name="Habitat" Relationship="Self.FK_Animal_Habitat" FromRole="Animal" ToRole="Habitat" />
+          <Property Name="Foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Bird">
+          <Key>
+            <PropertyRef Name="ID_Bird" />
+          </Key>
+          <Property Name="ID_Bird" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirdth" Type="DateTime" Precision="0" />
+          <Property Name="ID_Gender" Type="Int32" />
+          <Property Name="ID_WinteringPlace" Type="Int32" />
+          <Property Name="ID_FeedingRation" Type="Int32" />
+          <Property Name="ID_Habitat" Type="Int32" />
+          <Property Name="ID_Caretaker" Type="Int32" />
+          <Property Name="ID_Veterinarian" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Bird_Employee" FromRole="Bird" ToRole="Employee" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK_Bird_Employee1" FromRole="Bird" ToRole="Employee" />
+          <NavigationProperty Name="Feeding_Ration" Relationship="Self.FK_Bird_Feeding_Ration" FromRole="Bird" ToRole="Feeding_Ration" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Bird_Gender" FromRole="Bird" ToRole="Gender" />
+          <NavigationProperty Name="Habitat" Relationship="Self.FK_Bird_Habitat" FromRole="Bird" ToRole="Habitat" />
+          <NavigationProperty Name="Wintering_Place" Relationship="Self.FK_Bird_Wintering_Place" FromRole="Bird" ToRole="Wintering_Place" />
+          <Property Name="Foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="ID_Employee" />
+          </Key>
+          <Property Name="ID_Employee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirdth" Type="DateTime" Precision="0" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MaritalStatus" Type="Boolean" />
+          <Property Name="ID_TypeEmployee" Type="Int32" />
+          <Property Name="Password" Type="Int32" />
+          <NavigationProperty Name="Animal" Relationship="Self.FK_Animal_Employee" FromRole="Employee" ToRole="Animal" />
+          <NavigationProperty Name="Animal1" Relationship="Self.FK_Animal_Employee1" FromRole="Employee" ToRole="Animal" />
+          <NavigationProperty Name="Bird" Relationship="Self.FK_Bird_Employee" FromRole="Employee" ToRole="Bird" />
+          <NavigationProperty Name="Bird1" Relationship="Self.FK_Bird_Employee1" FromRole="Employee" ToRole="Bird" />
+          <NavigationProperty Name="Type_Employee" Relationship="Self.FK_Employee_Type_Employee" FromRole="Employee" ToRole="Type_Employee" />
+          <NavigationProperty Name="Reptile" Relationship="Self.FK_Reptile_Employee" FromRole="Employee" ToRole="Reptile" />
+          <NavigationProperty Name="Reptile1" Relationship="Self.FK_Reptile_Employee1" FromRole="Employee" ToRole="Reptile" />
+          <Property Name="Foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Feeding_Ration">
+          <Key>
+            <PropertyRef Name="ID_FeedingRation" />
+          </Key>
+          <Property Name="ID_FeedingRation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ID_TypeFeedingRation" Type="Int32" />
+          <NavigationProperty Name="Animal" Relationship="Self.FK_Animal_Feeding_Ration" FromRole="Feeding_Ration" ToRole="Animal" />
+          <NavigationProperty Name="Bird" Relationship="Self.FK_Bird_Feeding_Ration" FromRole="Feeding_Ration" ToRole="Bird" />
+          <NavigationProperty Name="Type_Feeding_Ration" Relationship="Self.FK_Feeding_Ration_Type_Feeding_Ration" FromRole="Feeding_Ration" ToRole="Type_Feeding_Ration" />
+          <NavigationProperty Name="Reptile" Relationship="Self.FK_Reptile_Feeding_Ration" FromRole="Feeding_Ration" ToRole="Reptile" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="ID_Gender" />
+          </Key>
+          <Property Name="ID_Gender" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Animal" Relationship="Self.FK_Animal_Gender" FromRole="Gender" ToRole="Animal" />
+          <NavigationProperty Name="Bird" Relationship="Self.FK_Bird_Gender" FromRole="Gender" ToRole="Bird" />
+          <NavigationProperty Name="Reptile" Relationship="Self.FK_Reptile_Gender" FromRole="Gender" ToRole="Reptile" />
+        </EntityType>
+        <EntityType Name="Habitat">
+          <Key>
+            <PropertyRef Name="ID_Habitat" />
+          </Key>
+          <Property Name="ID_Habitat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Characteistic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Animal" Relationship="Self.FK_Animal_Habitat" FromRole="Habitat" ToRole="Animal" />
+          <NavigationProperty Name="Bird" Relationship="Self.FK_Bird_Habitat" FromRole="Habitat" ToRole="Bird" />
+          <NavigationProperty Name="Reptile" Relationship="Self.FK_Reptile_Habitat" FromRole="Habitat" ToRole="Reptile" />
+        </EntityType>
+        <EntityType Name="Reptile">
+          <Key>
+            <PropertyRef Name="ID_Reptile" />
+          </Key>
+          <Property Name="ID_Reptile" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirdth" Type="DateTime" Precision="0" />
+          <Property Name="ID_Gender" Type="Int32" />
+          <Property Name="NormalTemperrature" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="HibernationPeriod" Type="Int32" />
+          <Property Name="ID_FeedingRation" Type="Int32" />
+          <Property Name="ID_Habitat" Type="Int32" />
+          <Property Name="ID_Caretaker" Type="Int32" />
+          <Property Name="ID_Veterinarian" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Reptile_Employee" FromRole="Reptile" ToRole="Employee" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK_Reptile_Employee1" FromRole="Reptile" ToRole="Employee" />
+          <NavigationProperty Name="Feeding_Ration" Relationship="Self.FK_Reptile_Feeding_Ration" FromRole="Reptile" ToRole="Feeding_Ration" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Reptile_Gender" FromRole="Reptile" ToRole="Gender" />
+          <NavigationProperty Name="Habitat" Relationship="Self.FK_Reptile_Habitat" FromRole="Reptile" ToRole="Habitat" />
+          <Property Name="Foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Type_Employee">
+          <Key>
+            <PropertyRef Name="ID_TypeEmployee" />
+          </Key>
+          <Property Name="ID_TypeEmployee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Type_Employee" FromRole="Type_Employee" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Type_Feeding_Ration">
+          <Key>
+            <PropertyRef Name="ID_TyprFeedingRation" />
+          </Key>
+          <Property Name="ID_TyprFeedingRation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Feeding_Ration" Relationship="Self.FK_Feeding_Ration_Type_Feeding_Ration" FromRole="Type_Feeding_Ration" ToRole="Feeding_Ration" />
+        </EntityType>
+        <EntityType Name="Wintering_Place">
+          <Key>
+            <PropertyRef Name="ID_WinteringPlace" />
+          </Key>
+          <Property Name="ID_WinteringPlace" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameCountry" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FlightDate" Type="DateTime" Precision="0" />
+          <Property Name="ArrinalDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Bird" Relationship="Self.FK_Bird_Wintering_Place" FromRole="Wintering_Place" ToRole="Bird" />
+        </EntityType>
+        <Association Name="FK_Animal_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="ID_Caretaker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Employee1">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="ID_Veterinarian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Feeding_Ration">
+          <End Role="Feeding_Ration" Type="Self.Feeding_Ration" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feeding_Ration">
+              <PropertyRef Name="ID_FeedingRation" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="ID_FeedingRation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID_Gender" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="ID_Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Habitat">
+          <End Role="Habitat" Type="Self.Habitat" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Habitat">
+              <PropertyRef Name="ID_Habitat" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="ID_Habitat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bird_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Bird" Type="Self.Bird" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Bird">
+              <PropertyRef Name="ID_Caretaker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bird_Employee1">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Bird" Type="Self.Bird" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Bird">
+              <PropertyRef Name="ID_Veterinarian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bird_Feeding_Ration">
+          <End Role="Feeding_Ration" Type="Self.Feeding_Ration" Multiplicity="0..1" />
+          <End Role="Bird" Type="Self.Bird" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feeding_Ration">
+              <PropertyRef Name="ID_FeedingRation" />
+            </Principal>
+            <Dependent Role="Bird">
+              <PropertyRef Name="ID_FeedingRation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bird_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Bird" Type="Self.Bird" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID_Gender" />
+            </Principal>
+            <Dependent Role="Bird">
+              <PropertyRef Name="ID_Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bird_Habitat">
+          <End Role="Habitat" Type="Self.Habitat" Multiplicity="0..1" />
+          <End Role="Bird" Type="Self.Bird" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Habitat">
+              <PropertyRef Name="ID_Habitat" />
+            </Principal>
+            <Dependent Role="Bird">
+              <PropertyRef Name="ID_Habitat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bird_Wintering_Place">
+          <End Role="Wintering_Place" Type="Self.Wintering_Place" Multiplicity="0..1" />
+          <End Role="Bird" Type="Self.Bird" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wintering_Place">
+              <PropertyRef Name="ID_WinteringPlace" />
+            </Principal>
+            <Dependent Role="Bird">
+              <PropertyRef Name="ID_WinteringPlace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Type_Employee">
+          <End Role="Type_Employee" Type="Self.Type_Employee" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_Employee">
+              <PropertyRef Name="ID_TypeEmployee" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="ID_TypeEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reptile_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Reptile" Type="Self.Reptile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Reptile">
+              <PropertyRef Name="ID_Caretaker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reptile_Employee1">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Reptile" Type="Self.Reptile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Reptile">
+              <PropertyRef Name="ID_Veterinarian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feeding_Ration_Type_Feeding_Ration">
+          <End Role="Type_Feeding_Ration" Type="Self.Type_Feeding_Ration" Multiplicity="0..1" />
+          <End Role="Feeding_Ration" Type="Self.Feeding_Ration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_Feeding_Ration">
+              <PropertyRef Name="ID_TyprFeedingRation" />
+            </Principal>
+            <Dependent Role="Feeding_Ration">
+              <PropertyRef Name="ID_TypeFeedingRation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reptile_Feeding_Ration">
+          <End Role="Feeding_Ration" Type="Self.Feeding_Ration" Multiplicity="0..1" />
+          <End Role="Reptile" Type="Self.Reptile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feeding_Ration">
+              <PropertyRef Name="ID_FeedingRation" />
+            </Principal>
+            <Dependent Role="Reptile">
+              <PropertyRef Name="ID_FeedingRation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reptile_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Reptile" Type="Self.Reptile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID_Gender" />
+            </Principal>
+            <Dependent Role="Reptile">
+              <PropertyRef Name="ID_Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reptile_Habitat">
+          <End Role="Habitat" Type="Self.Habitat" Multiplicity="0..1" />
+          <End Role="Reptile" Type="Self.Reptile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Habitat">
+              <PropertyRef Name="ID_Habitat" />
+            </Principal>
+            <Dependent Role="Reptile">
+              <PropertyRef Name="ID_Habitat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ZooEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Animal" EntityType="Self.Animal" />
+          <EntitySet Name="Bird" EntityType="Self.Bird" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="Feeding_Ration" EntityType="Self.Feeding_Ration" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" />
+          <EntitySet Name="Habitat" EntityType="Self.Habitat" />
+          <EntitySet Name="Reptile" EntityType="Self.Reptile" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Type_Employee" EntityType="Self.Type_Employee" />
+          <EntitySet Name="Type_Feeding_Ration" EntityType="Self.Type_Feeding_Ration" />
+          <EntitySet Name="Wintering_Place" EntityType="Self.Wintering_Place" />
+          <AssociationSet Name="FK_Animal_Employee" Association="Self.FK_Animal_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Employee1" Association="Self.FK_Animal_Employee1">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Feeding_Ration" Association="Self.FK_Animal_Feeding_Ration">
+            <End Role="Feeding_Ration" EntitySet="Feeding_Ration" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Gender" Association="Self.FK_Animal_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Habitat" Association="Self.FK_Animal_Habitat">
+            <End Role="Habitat" EntitySet="Habitat" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bird_Employee" Association="Self.FK_Bird_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Bird" EntitySet="Bird" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bird_Employee1" Association="Self.FK_Bird_Employee1">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Bird" EntitySet="Bird" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bird_Feeding_Ration" Association="Self.FK_Bird_Feeding_Ration">
+            <End Role="Feeding_Ration" EntitySet="Feeding_Ration" />
+            <End Role="Bird" EntitySet="Bird" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bird_Gender" Association="Self.FK_Bird_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Bird" EntitySet="Bird" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bird_Habitat" Association="Self.FK_Bird_Habitat">
+            <End Role="Habitat" EntitySet="Habitat" />
+            <End Role="Bird" EntitySet="Bird" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bird_Wintering_Place" Association="Self.FK_Bird_Wintering_Place">
+            <End Role="Wintering_Place" EntitySet="Wintering_Place" />
+            <End Role="Bird" EntitySet="Bird" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Type_Employee" Association="Self.FK_Employee_Type_Employee">
+            <End Role="Type_Employee" EntitySet="Type_Employee" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reptile_Employee" Association="Self.FK_Reptile_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Reptile" EntitySet="Reptile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reptile_Employee1" Association="Self.FK_Reptile_Employee1">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Reptile" EntitySet="Reptile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feeding_Ration_Type_Feeding_Ration" Association="Self.FK_Feeding_Ration_Type_Feeding_Ration">
+            <End Role="Type_Feeding_Ration" EntitySet="Type_Feeding_Ration" />
+            <End Role="Feeding_Ration" EntitySet="Feeding_Ration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reptile_Feeding_Ration" Association="Self.FK_Reptile_Feeding_Ration">
+            <End Role="Feeding_Ration" EntitySet="Feeding_Ration" />
+            <End Role="Reptile" EntitySet="Reptile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reptile_Gender" Association="Self.FK_Reptile_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Reptile" EntitySet="Reptile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reptile_Habitat" Association="Self.FK_Reptile_Habitat">
+            <End Role="Habitat" EntitySet="Habitat" />
+            <End Role="Reptile" EntitySet="Reptile" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ZooModelContainer" CdmEntityContainer="ZooEntities">
+          <EntitySetMapping Name="Animal">
+            <EntityTypeMapping TypeName="ZooModel.Animal">
+              <MappingFragment StoreEntitySet="Animal">
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="ID_Animal" ColumnName="ID_Animal" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DateOfBirdth" ColumnName="DateOfBirdth" />
+                <ScalarProperty Name="ID_Gender" ColumnName="ID_Gender" />
+                <ScalarProperty Name="ID_FeedingRation" ColumnName="ID_FeedingRation" />
+                <ScalarProperty Name="ID_Habitat" ColumnName="ID_Habitat" />
+                <ScalarProperty Name="ID_Caretaker" ColumnName="ID_Caretaker" />
+                <ScalarProperty Name="ID_Veterinarian" ColumnName="ID_Veterinarian" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bird">
+            <EntityTypeMapping TypeName="ZooModel.Bird">
+              <MappingFragment StoreEntitySet="Bird">
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="ID_Bird" ColumnName="ID_Bird" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DateOfBirdth" ColumnName="DateOfBirdth" />
+                <ScalarProperty Name="ID_Gender" ColumnName="ID_Gender" />
+                <ScalarProperty Name="ID_WinteringPlace" ColumnName="ID_WinteringPlace" />
+                <ScalarProperty Name="ID_FeedingRation" ColumnName="ID_FeedingRation" />
+                <ScalarProperty Name="ID_Habitat" ColumnName="ID_Habitat" />
+                <ScalarProperty Name="ID_Caretaker" ColumnName="ID_Caretaker" />
+                <ScalarProperty Name="ID_Veterinarian" ColumnName="ID_Veterinarian" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="ZooModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="ID_Employee" ColumnName="ID_Employee" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="DateOfBirdth" ColumnName="DateOfBirdth" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="ID_TypeEmployee" ColumnName="ID_TypeEmployee" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feeding_Ration">
+            <EntityTypeMapping TypeName="ZooModel.Feeding_Ration">
+              <MappingFragment StoreEntitySet="Feeding_Ration">
+                <ScalarProperty Name="ID_FeedingRation" ColumnName="ID_FeedingRation" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_TypeFeedingRation" ColumnName="ID_TypeFeedingRation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="ZooModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="ID_Gender" ColumnName="ID_Gender" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Habitat">
+            <EntityTypeMapping TypeName="ZooModel.Habitat">
+              <MappingFragment StoreEntitySet="Habitat">
+                <ScalarProperty Name="ID_Habitat" ColumnName="ID_Habitat" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Characteistic" ColumnName="Characteistic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reptile">
+            <EntityTypeMapping TypeName="ZooModel.Reptile">
+              <MappingFragment StoreEntitySet="Reptile">
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="ID_Reptile" ColumnName="ID_Reptile" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DateOfBirdth" ColumnName="DateOfBirdth" />
+                <ScalarProperty Name="ID_Gender" ColumnName="ID_Gender" />
+                <ScalarProperty Name="NormalTemperrature" ColumnName="NormalTemperrature" />
+                <ScalarProperty Name="HibernationPeriod" ColumnName="HibernationPeriod" />
+                <ScalarProperty Name="ID_FeedingRation" ColumnName="ID_FeedingRation" />
+                <ScalarProperty Name="ID_Habitat" ColumnName="ID_Habitat" />
+                <ScalarProperty Name="ID_Caretaker" ColumnName="ID_Caretaker" />
+                <ScalarProperty Name="ID_Veterinarian" ColumnName="ID_Veterinarian" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ZooModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type_Employee">
+            <EntityTypeMapping TypeName="ZooModel.Type_Employee">
+              <MappingFragment StoreEntitySet="Type_Employee">
+                <ScalarProperty Name="ID_TypeEmployee" ColumnName="ID_TypeEmployee" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type_Feeding_Ration">
+            <EntityTypeMapping TypeName="ZooModel.Type_Feeding_Ration">
+              <MappingFragment StoreEntitySet="Type_Feeding_Ration">
+                <ScalarProperty Name="ID_TyprFeedingRation" ColumnName="ID_TyprFeedingRation" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wintering_Place">
+            <EntityTypeMapping TypeName="ZooModel.Wintering_Place">
+              <MappingFragment StoreEntitySet="Wintering_Place">
+                <ScalarProperty Name="ID_WinteringPlace" ColumnName="ID_WinteringPlace" />
+                <ScalarProperty Name="NameCountry" ColumnName="NameCountry" />
+                <ScalarProperty Name="FlightDate" ColumnName="FlightDate" />
+                <ScalarProperty Name="ArrinalDate" ColumnName="ArrinalDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
